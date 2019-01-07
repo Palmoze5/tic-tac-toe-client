@@ -1,1 +1,37 @@
 @import '~bootstrap/scss/bootstrap';
+
+$background-color: #FFFFFF;
+$font-color: #dfdfdf;
+$white: #fff;
+$grey: rgb(128, 128, 128);
+
+$black: #000;
+
+body {
+  background-color: $background-color;
+}
+
+.box {
+  align-items: center;
+  border: 1px solid $black;
+  color: $font-color;
+  display: flex;
+  height: 100px;
+  justify-content: center;
+}
+
+.grey {
+  background-color: $grey;
+}
+
+.white {
+  background-color: $white;
+}
+
+.success {
+  background-color: $green;
+}
+
+.failure {
+  background-color: $red;
+}
