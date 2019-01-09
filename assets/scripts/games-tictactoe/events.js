@@ -33,18 +33,54 @@ const onBoxClick = function (event) {
       gameBoard[idOfBoxClicked] = 'o'
       turn++
     }
-    console.log(gameBoard)
+    let gameWinner = function gameWinner() {
+  if (store.gameBoard.cells[0] === store.gameBoard.cells[1] && store.gameBoard.cells[0] === store.gameBoard.cells[2] && store.gameBoard.cells[0] !== '') {
+    return true;
+  } else if (store.gameBoard.cells[3] === store.gameBoard.cells[4] && store.gameBoard.cells[3] === store.gameBoard.cells[5] && store.gameBoard.cells[3] !== '') {
+    return true;
+  } else if (store.gameBoard.cells[6] === store.gameBoard.cells[7] && store.gameBoard.cells[6] === store.gameBoard.cells[8] && store.gameBoard.cells[6] !== '') {
+    return true;
+  } else if (store.gameBoard.cells[0] === store.gameBoard.cells[3] && store.gameBoard.cells[0] === store.gameBoard.cells[6] && store.gameBoard.cells[0] !== '') {
+    return true;
+  } else if (store.gameBoard.cells[1] === store.gameBoard.cells[4] && store.gameBoard.cells[1] === store.gameBoard.cells[7] && store.gameBoard.cells[1] !== '') {
+    return true;
+  } else if (store.gameBoard.cells[2] === store.gameBoard.cells[5] && store.gameBoard.cells[2] === store.gameBoard.cells[8] && store.gameBoard.cells[2] !== '') {
+    return true;
+  } else if (store.gameBoard.cells[0] === store.gameBoard.cells[4] && store.gameBoard.cells[0] === store.gameBoard.cells[8] && store.gameBoard.cells[0] !== '') {
+    return true;
+  } else if (store.gameBoard.cells[2] === store.gameBoard.cells[4] && store.gameBoard.cells[2] === store.gameBoard.cells[6] && store.gameBoard.cells[2] !== '') {
+    return true;
+  } else {
+    return false;
   }
-
+  }
+};
+// check for draw scenario
+var gameDraw = function gameDraw() {
+  if (store.gameBoard.cells[0] && store.gameBoard.cells[1] && store.gameBoard.cells[2] && store.gameBoard.cells[3] && store.gameBoard.cells[4] && store.gameBoard.cells[5] && store.gameBoard.cells[6] && store.gameBoard.cells[7] && store.gameBoard.cells[8] !== '' && checkWinner() === false) {
+    return true;
+  } else {
+    return false;
+  }
+};
+// check for if game is over
+var gameOver = function gameOver() {
+  if (checkWinner() === true || gameDraw() === true) {
+    return true;
+  } else {
+    return false;
+  }
 // Telling the user that the game is over:
 // 1.) When the gameboard fills up
-}
 const addGameHandlers = function () {
   $('.box').on('click', onBoxClick)
   // event.preventDefault()
   // console.log('addGameHandlers worked!')
 }
 module.exports = {
-  addGameHandlers
+  addGameHandlers,
+  gameWinner,
+  gameDraw,
+  gameOver
   // createNewGame
 }
