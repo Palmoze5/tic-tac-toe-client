@@ -1,57 +1,77 @@
-[![General Assembly Logo](https://camo.githubusercontent.com/1a91b05b8f4d44b5bbfb83abac2b0996d8e26c92/687474703a2f2f692e696d6775722e636f6d2f6b6538555354712e706e67)](https://generalassemb.ly/education/web-development-immersive)
+The TIC TAC TOE game
+(READ ME file)
 
-# browser-template
 
-A template for starting front-end projects. Webpack for `require` system, build
-pipeline, and development server. Boostrap and Handlebars.js included. No
-front-end frameworks included.
+SUMMARY:
+This is a file which explains the goals, features and future
+considerations of the Tic-Tac-Toe game.
 
-## Installation
 
-1. [Download](../../archive/master.zip) this template.
-1. Move to the `wdi/projects` directory, then unzip the template directory with
-    `unzip /Users/<user-name>/Downloads/browser-template-master.zip`.
-1. Rename the template directory from `browser-template-master` to
-    `<project-name>-client`.
-1. Empty [`README.md`](README.md) and fill with your own content.
-1. Replace all instances of `ga-wdi-boston.browser-template` with the name of
-    your project.
-1. Move into the new project and `git init`.
-1. Add all of the files in your project with the command `git add --all`.
-      - **Note: This is the only time you should run this command!**
-1. Commit all of your files with the command `git commit`.
-      - Your commit title should read `Initial commit`.
-1. Install dependencies with `npm install`.
-1. Create a new repository on [github.com](https://github.com),
-    _not GitHub Enterprise_.
-1. Name the new repository with the same name used on Step 3.
-1. Follow the instructions on your new repository's setup page. For details on
-   how to push to Github, refer to the section on Github entitled "…or push an existing
-   repository from the command line." Further documentation can be found [here](https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line/).
+OUTLINE:
+-A wireframe of what the game project will look like.
+-How the developer will represent the game board in JS.
+-How the developer plan to approaches this project.
+-4-8 user stories for the game project (for example, using the As a < type of user >, I want < some goal > so that < some reason >. format from the readings).
+-How the developer plans to keep the code modular.
+-Future considerations
+-Version control to backup / track project?
 
-## Structure
 
-Developers should store JavaScript files in [`assets/scripts`](assets/scripts).
-The "manifest" or entry-point is
-[`assets/scripts/app.js`](assets/scripts/app.js). In general, only
-application initialization goes in this file. It's normal for developers to
-start putting all code in this file, but encourage them to break out different
-responsibilities and use the `require` syntax put references where they're
-needed.
+APPROACH:
+The developer has done a checkout the html, as to develop an idea of what it would look like for the user. Then the developer worked on the authentication. Future considerations, such as CSS and HTML would be applied for a better UX/UI. In detail, the order would be as followed:
 
-Developers should set `apiUrls.production` and `apiUrls.development` in
-[`assets/scripts/config.js`](assets/scripts/config.js).  With
-`apiUrls` set, developers may rely on `apiUrl` as the base for API
-URLs.
 
-Developers should store styles in [`assets/styles`](assets/styles) and load them
-from [`assets/styles/index.scss`](assets/styles/index.scss). Bootstrap version 3 is
-included in this template.
+Project List of “To-Dos”:
+1st thing - Make a game board in .HTML, with minimal styling, but should have the idea of a tic tac toe board game
+2nd thing - setting up click handlers on each of the 9 boxes
+3rd thing - when someone clicks the box, there would start with an “X”
+4th thing - write the logic to alternate/switching between “X” and “O” (it would be an “if statement”)
+5th thing - Write something to prevent changing a square that’s already been filled in
+6th thing - write some code to see if the game is over
+7th thing - move over to the authentication - making buttons for signing in out, signing up, ajax
+8th thing - make a button to reset the game
+9th thing - Make to when you start the game, it creates a game on the API
+10th thing - Make it so that whenever an X or O goes on the board, that you make a PATCH request to the API with the info (find it in the API doc)
+11th thing - Instead of scoreboard, write a board of how many times the game has been played
+(I’d have to make a GET request, which is found in the API doc)
 
-Developers should use [getFormFields](get-form-fields.md) to retrieve form data
-to send to an API.
+Test, re-test, and peer critique will be done.
 
-To deploy a browser-template based SPA, run `grunt deploy`.
+
+USER STORIES:
+As a solo player I want < to be able to sign up > so that < I can play the game correctly>
+ As a solo player I want < to be able to sign in > so that <I can stay logged in and keep count of the many times I played>
+As a solo player I want < change my password > so that < I may want to use a password that is most memorable to me
+As a solo player I want < to have a refresh button > so that < the board can clear so I can play again>
+As a solo player I want < to be able to alternate between X and O > so that < I can take turns, even if I am playing with a friend on my computer>
+As a player I want < to click on the boxes and display either an X or O in an order> so that < even if I took a break, without logging out, I can know which turn (either X or O) I’m on.
+As a player I want < the browser refresh box to not have an effect on my board game > so that < I will have no disruption and a comfortable experience>
+As a player I want < to be able to have a refresher boxer inside the page to only clear the boxes, but not the scorecard > so that < I can remember how many times I played>
+
+
+KEEPING CODE MODULAR:
+First, create separate tabs, working out of atom, and separating them by their own function: App, API, Events, HTML
+Secondly, putting the necessary spaces between and indentation of code.
+Thirdly, perhaps putting a commentary in certain instances of code.
+
+
+CREATIVE SPIN:
+Developer was hoping to ultimately:
+a.) Play around with CSS, so that competitors have their own colors (perhaps blue for “X” and “Red” for “O” or some other colors, and whenever there is a winner, it would display “X” or “O” wins, in a specific color.
+b.) Something that displays “X” or “O” wins or if there was a draw.
+
+
+TRACKING PROJECTS THROUGH VERSION CONTROL:
+Developer ensures making a featured branch, but most of all, staging and committing whenever working on a feature. Developer commited whenever a new button is added, changed the CSS and HTML, or the layout of the forms, and any extra features. The commits will be
+simple to read providing a more in depth detail of the updates in the commentary.
+
+
+FUTURE PROJECT CONSIDERATIONS:
+1.) Fonts, typography, and colors to provide a better UI/UX
+2.) A pop up box that shows a message whenever the loser loses that gives an inspirational quote (10 quotes stored), that would randomize for every time (or maybe every 3rd time played there is a loss) to keep going. This would be found through an open sourced type Quote API via Google.
+3.)  More consideration into front end to provide for a high quality
+UX/UI.
+
 
 ## Adding Images
 
@@ -69,45 +89,3 @@ or
 ```
 
 Note that there's no `./` or `/` in front of `public/filename.jpg`.
-
-## Adding Fonts
-
-To add custom fonts to your app, you can either use a CDN like Google Fonts, or
-you can download the fonts and save them in the `public` directory. If you use
-the former method, follow the directions on the website providing the fonts.
-
-For local fonts, put the files in `public`, and then import and use them in a
-`.scss` file like this:
-
-```scss
-@font-face {
-  font-family: 'Nature Beauty';
-  src: url('public/Nature-Beauty.ttf') format('truetype');
-}
-
-.element-with-custom-font {
-  font-family: 'Nature Beauty';
-}
-```
-
-## Tasks
-
-Developers should run these often!
-
-- `grunt nag` or just `grunt`: runs code quality analysis tools on your code
-    and complains
-- `grunt make-standard`: reformats all your code in the JavaScript Standard Style
-- `grunt <server|serve|s>`: generates bundles, watches, and livereloads
-- `grunt build`: place bundled styles and scripts where `index.html` can find
-    them
-
-## Additional Resources
-
-- [Modern Javascript Explained for Dinosaurs](https://medium.com/@peterxjang/modern-javascript-explained-for-dinosaurs-f695e9747b70)
-- [Making Sense of Front End Build Tools](https://medium.freecodecamp.org/making-sense-of-front-end-build-tools-3a1b3a87043b)
-
-## [License](LICENSE)
-
-1. All content is licensed under a CC­BY­NC­SA 4.0 license.
-1. All software code is licensed under GNU GPLv3. For commercial use or
-    alternative licensing, please contact legal@ga.co.
