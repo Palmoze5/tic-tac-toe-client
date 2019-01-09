@@ -4,8 +4,6 @@
 // const ui = require('./ui.js')
 const store = require('./ui.js')
 
-// const playerOne = 'x'
-// const gameBoard = ['', '', '', '', '', '', '', '', '']
 let turn = 1
 
 store.gameBoard = ['', '', '', '', '', '', '', '', '']
