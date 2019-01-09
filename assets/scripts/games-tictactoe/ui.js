@@ -1,13 +1,13 @@
 const store = require('../store.js')
 
-const onBoxClickSuccess = function (data) {
+const onBoxClickSuccess = function (event) {
   $('#box').text('Next player turn')
-  store.user = data.user
+  store.user = event.user
   // $('#box').removeClass()
   // // $('#sign-up').hide()
   // // $('#sign-in').hide()
   // $('#sign-up').addClass('success')
-  console.log('onBoxClickSuccess OK Data is : ', data)
+  console.log('onBoxClickSuccess OK Data is : ', event)
 }
 
 const onBoxClickFailure = function (error) {

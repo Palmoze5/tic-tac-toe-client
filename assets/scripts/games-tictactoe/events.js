@@ -9,30 +9,47 @@
 let turn = 1
 
 const gameBoard = ['', '', '', '', '', '', '', '', '']
+// const winningConditions = [
+//   ['0', '1', '2'],
+//   ['3', '4', '5'],
+//   ['6', '7', '8'],
+//   ['0', '3', '6'],
+//   ['2', '4', '7'],
+//   ['3', '5', '8'],
+//   ['0', '4', '8'],
+//   ['2', '4', '6']
+// ]
 
 const onBoxClick = function (event) {
   event.preventDefault()
+  const idOfBoxClicked = event.target.id
+  // console.log(event)
   // $('#box')
   // we want this function to display either "X" or "O"
-}
-const idOfBoxClicked = event.target.id
-// console.log('event.Target is ', event.target)
-// console.log('id is ', idOfBoxClicked)
-// const boxSelector = '#' + idOfBoxClicked
-// console.log('boxSelector is ', boxSelector)
+  // const idOfBoxClicked = event.target.id
+  // console.log('event.Target is ', event.target)
+  // console.log('id is ', idOfBoxClicked)
+  // const boxSelector = '#' + idOfBoxClicked
+  // console.log('boxSelector is ', boxSelector)
 
-const boxText = $('#' + idOfBoxClicked).text()
-// console.log('boxText is ', boxText)
+  const boxText = $('#' + idOfBoxClicked).text()
+  // console.log('boxText is ', boxText)
 
-if (boxText === '') {
-  if (turn % 2 === 1) {
-    $('#' + idOfBoxClicked).text('x')
-    gameBoard[idOfBoxClicked] = 'x'
-    turn++
-  } else if (turn % 2 === 0) {
-    $('#' + idOfBoxClicked).text('o')
-    gameBoard[idOfBoxClicked] = 'o'
-    turn++
+  if (boxText === '') {
+    if (turn % 2 === 1) {
+      $('#' + idOfBoxClicked).text('x')
+      gameBoard[idOfBoxClicked] = 'x'
+      turn++
+    } else if (turn % 2 === 0) {
+      $('#' + idOfBoxClicked).text('o')
+      gameBoard[idOfBoxClicked] = 'o'
+      turn++
+    }
+  }
+  for (let i = 0; i < gameBoard.length; i++) {
+
+    // console.log(gameBoard)
+    // console.log(winningConditions)
   }
 }
 //   const gameWinner = function gameWinner() {
