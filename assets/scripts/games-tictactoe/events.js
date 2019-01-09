@@ -2,60 +2,84 @@
 //
 // const api = require('./api.js')
 // const ui = require('./ui.js')
-// const store = require('./ui.js')
+const store = require('./ui.js')
 
 // const playerOne = 'x'
 // const gameBoard = ['', '', '', '', '', '', '', '', '']
 let turn = 1
 
-const gameBoard = ['', '', '', '', '', '', '', '', '']
+store.gameBoard = ['', '', '', '', '', '', '', '', '']
+
+const winningGame = function () {
+  if ((store.gameBoard[0] === 'x' && store.gameBoard[1] === 'x' && store.gameBoard[2] === 'x') ||
+      (store.gameBoard[0] === 'x' && store.gameBoard[3] === 'x' && store.gameBoard[6] === 'x') ||
+      (store.gameBoard[1] === 'x' && store.gameBoard[4] === 'x' && store.gameBoard[7] === 'x') ||
+      (store.gameBoard[2] === 'x' && store.gameBoard[5] === 'x' && store.gameBoard[8] === 'x') ||
+      (store.gameBoard[6] === 'x' && store.gameBoard[7] === 'x' && store.gameBoard[8] === 'x') ||
+      (store.gameBoard[3] === 'x' && store.gameBoard[4] === 'x' && store.gameBoard[5] === 'x') ||
+      (store.gameBoard[0] === 'x' && store.gameBoard[4] === 'x' && store.gameBoard[8] === 'x') ||
+      (store.gameBoard[2] === 'x' && store.gameBoard[4] === 'x' && store.gameBoard[6] === 'x')) {
+    // console.html(<h3>X Wins! Game Over - TRY AGAIN!</h3>)
+    return true
+  } else if
+  ((store.gameBoard[0] === 'o' && store.gameBoard[1] === 'o' && store.gameBoard[2] === 'o') ||
+          (store.gameBoard[0] === 'o' && store.gameBoard[3] === 'o' && store.gameBoard[6] === 'o') ||
+          (store.gameBoard[1] === 'o' && store.gameBoard[4] === 'o' && store.gameBoard[7] === 'o') ||
+          (store.gameBoard[2] === 'o' && store.gameBoard[5] === 'o' && store.gameBoard[8] === 'o') ||
+          (store.gameBoard[6] === 'o' && store.gameBoard[7] === 'o' && store.gameBoard[8] === 'o') ||
+          (store.gameBoard[3] === 'o' && store.gameBoard[4] === 'o' && store.gameBoard[5] === 'o') ||
+          (store.gameBoard[0] === 'o' && store.gameBoard[4] === 'o' && store.gameBoard[8] === 'o') ||
+          (store.gameBoard[2] === 'o' && store.gameBoard[4] === 'o' && store.gameBoard[6] === 'o')) {
+    $('#').html('O wins!')
+    return true
+  } else {
+    return false
+  }
+}
+const gameDraw = function () {
+  if ((store.gameBoard[0] !== '' && store.gameBoard[1] !== '' && store.gameBoard[2] !== '' && store.gameBoard[3] !== '' && store.gameBoard[4] !== '' && store.gameBoard[5] !== '' && store.gameBoard[6] !== '' && store.gameBoard[7] !== '' && store.gameBoard[8] !== '' && winningGame() === false)) {
+    console.log('Its a DRAW! Game Over - TRY AGAIN!')
+  }
+}
 
 const onBoxClick = function (event) {
   event.preventDefault()
-  // $('#box')
-  // we want this function to display either "X" or "O"
-}
-const idOfBoxClicked = event.target.id
-// console.log('event.Target is ', event.target)
-// console.log('id is ', idOfBoxClicked)
-// const boxSelector = '#' + idOfBoxClicked
-// console.log('boxSelector is ', boxSelector)
-
-const boxText = $('#' + idOfBoxClicked).text()
-// console.log('boxText is ', boxText)
-
-if (boxText === '') {
-  if (turn % 2 === 1) {
-    $('#' + idOfBoxClicked).text('x')
-    gameBoard[idOfBoxClicked] = 'x'
-    turn++
-  } else if (turn % 2 === 0) {
-    $('#' + idOfBoxClicked).text('o')
-    gameBoard[idOfBoxClicked] = 'o'
-    turn++
+  // Determines the Box ID that the user clicked
+  const idOfBoxClicked = event.target.id
+  // Get the value of THAT Box ID
+  const boxText = $('#' + idOfBoxClicked).text()
+  // Add 'X' or 'O' depending on existing box value
+  if (boxText === '') {
+    if (turn % 2 === 1) {
+      console.log('store.gameBoard is', store.gameBoard)
+      $('#' + idOfBoxClicked).text('x')
+      store.gameBoard[idOfBoxClicked] = 'x'
+      turn++
+    } else if (turn % 2 === 0) {
+      console.log('store.gameBoard is', store.gameBoard)
+      $('#' + idOfBoxClicked).text('o')
+      store.gameBoard[idOfBoxClicked] = 'o'
+      turn++
+    }
   }
+  // See if somebody has won the game yet
+  winningGame()
+  gameDraw()
 }
-//   const gameWinner = function gameWinner() {
-//     if (store.gameBoard.cells[0] === store.gameBoard.cells[1] && store.gameBoard.cells[0] === store.gameBoard.cells[2] && store.gameBoard.cells[0] !== '') {
-//       return true;
-//     } else if (store.gameBoard.cells[3] === store.gameBoard.cells[4] && store.gameBoard.cells[3] === store.gameBoard.cells[5] && store.gameBoard.cells[3] !== '') {
-//       return true;
-//     } else if (store.gameBoard.cells[6] === store.gameBoard.cells[7] && store.gameBoard.cells[6] === store.gameBoard.cells[8] && store.gameBoard.cells[6] !== '') {
-//       return true;
-//     } else if (store.gameBoard.cells[0] === store.gameBoard.cells[3] && store.gameBoard.cells[0] === store.gameBoard.cells[6] && store.gameBoard.cells[0] !== '') {
-//     return true;
-//   } else if (store.gameBoard.cells[1] === store.gameBoard.cells[4] && store.gameBoard.cells[1] === store.gameBoard.cells[7] && store.gameBoard.cells[1] !== '') {
-//     return true;
-//   } else if (store.gameBoard.cells[2] === store.gameBoard.cells[5] && store.gameBoard.cells[2] === store.gameBoard.cells[8] && store.gameBoard.cells[2] !== '') {
-//     return true;
-//   } else if (store.gameBoard.cells[0] === store.gameBoard.cells[4] && store.gameBoard.cells[0] === store.gameBoard.cells[8] && store.gameBoard.cells[0] !== '') {
-//     return true;
-//   } else if (store.gameBoard.cells[2] === store.gameBoard.cells[4] && store.gameBoard.cells[2] === store.gameBoard.cells[6] && store.gameBoard.cells[2] !== '') {
-//     return true;
-//   } else {
-//     return false;
-//   }
-//   }
+//   // console.log(event)
+//   // $('#box')
+//   // we want this function to display either "X" or "O"
+//   // const idOfBoxClicked = event.target.id
+//   // console.log('event.Target is ', event.target)
+//   // console.log('id is ', idOfBoxClicked)
+//   // const boxSelector = '#' + idOfBoxClicked
+//   // console.log('boxSelector is ', boxSelector)
+
+//   // console.log('boxText is ', boxText)
+
+// console.log(gameBoard)
+// console.log(winningConditions)
+// }
 // };
 // // check for draw scenario
 // var gameDraw = function gameDraw() {
@@ -66,24 +90,14 @@ if (boxText === '') {
 //   }
 // };
 // // check for if game is over
-// var gameOver = function gameOver() {
-//   if (checkWinner() === true || gameDraw() === true) {
-//     return true;
-//   } else {
-//     return false;
-//   }
-// };
-// Telling the user that the game is over:
-// 1.) When the gameboard fills up
 const addGameHandlers = function () {
   $('.box').on('click', onBoxClick)
   // event.preventDefault()
   // console.log('addGameHandlers worked!')
 }
+
 module.exports = {
   addGameHandlers
-  // gameWinner,
-  // gameDraw,
-  // gameOver
-  // createNewGame
+  // winningGame,
+  // gameDraw
 }

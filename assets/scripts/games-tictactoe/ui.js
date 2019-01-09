@@ -1,23 +1,45 @@
 const store = require('../store.js')
 
-const onBoxClickSuccess = function (data) {
-  $('#box').text('Next player turn')
-  store.user = data.user
-  // $('#box').removeClass()
-  // // $('#sign-up').hide()
-  // // $('#sign-in').hide()
-  // $('#sign-up').addClass('success')
-  console.log('onBoxClickSuccess OK Data is : ', data)
+const createGameSuccess = function (data) {
+  $('.game-board').show()
+  $('#scores').show()
+  $('#game-id').text('Game ID: ' + data.game.id)
+  $('#game-message').show()
+  $('#game-message').text('New Game Started!')
+  $('#game-message').css('background-color', '#8fff90')
+  store.game = data.game
 }
 
-const onBoxClickFailure = function (error) {
-  $('#box').text('Error on boxClick')
-  // $('#sign-up').removeClass()
-  $('#box').addClass('failure')
-  console.log('onBoxClick Failed. Error is : ', error)
+const createGameFailure = function () {
+  $('#message').text('Create Game Failed - Try Again')
+  $('#message').css('background-color', '#ff91A3')
+}
+// Get Games
+const getGamesSuccess = function (data) {
+  $('#games-list').text('Total Games for User ' + store.user.id + ': ' + data.games.length).css('font-weight', 'bold')
+  store.game = data.game
 }
 
+const getGamesFailure = function () {
+  $('#message').text('Getting Games Failed - Try Again')
+  $('#message').css('background-color', '#ff91A3')
+}
+// change password messages
+const updateGameSuccess = function (data) {
+  $('#message').text('Game Updated Successfully')
+  $('#message').css('background-color', '#8fff90')
+  store.game = data.game
+}
+
+const updateGameFailure = function () {
+  $('#message').text('Game Update Failed - Try Again')
+  $('#message').css('background-color', '#ff91A3')
+}
 module.exports = {
-  onBoxClickSuccess,
-  onBoxClickFailure
+  createGameSuccess,
+  createGameFailure,
+  getGamesSuccess,
+  getGamesFailure,
+  updateGameSuccess,
+  updateGameFailure
 }
