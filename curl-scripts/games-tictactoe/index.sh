@@ -1,4 +1,4 @@
-curl "https://tic-tac-toe-wdi.herokuapp.com/games" \
+curl "https://tic-tac-toe-wdi.herokuapp.com/game" \
   --include \
   --request GET \
   --header "Content-Type: application/json" \
