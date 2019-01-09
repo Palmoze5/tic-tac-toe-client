@@ -1,11 +1,11 @@
 @import '~bootstrap/scss/bootstrap';
 
-$background-color: #FFFF00;
-$font-color: #000000;
+$background-color: #ff0;
+$font-color: #000;
 $white: #fff;
 $grey: rgb(128, 128, 128);
 
-$black: #000000;
+$black: #000;
 
 body {
   background-color: $background-color;
@@ -14,8 +14,8 @@ body {
 .col-4 {
   align-items: center;
   color: $font-color;
-  border-bottom: 1px solid;
-  border-right: 1px solid;
+  // border-bottom: 1px solid;
+  // border-right: 1px solid;
   display: flex;
   font-size: 8rem;
   height: calc(100% / 3);
@@ -35,10 +35,10 @@ h2 {
 
 legend {
   text-align: center;
-  display: block;
-  padding-left: 2px;
-  padding-right: 2px;
-  border: none;
+  // display: block;
+  // padding-left: 2px;
+  // padding-right: 2px;
+  // border: none;
 }
 
 form {
