@@ -15,6 +15,7 @@ const onSignUp = function (event) {
 const onSignIn = function (event) {
   event.preventDefault()
   console.log('onSignIn worked!')
+  $('.game-board').removeClass('display')
 
   const data = getFormFields(event.target)
   api.signIn(data)
