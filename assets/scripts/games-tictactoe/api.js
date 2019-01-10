@@ -41,8 +41,17 @@ const patchGame = function (index, letter, over) {
     data: payload
   })
 }
-
+const showAllGames = function (example) {
+  return $.ajax({
+    url: config.apiUrl + '/games/' + store.game.id,
+    method: 'GET',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
+  })
+}
 module.exports = {
   createGame,
-  patchGame
+  patchGame,
+  showAllGames
 }

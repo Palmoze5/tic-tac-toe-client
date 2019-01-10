@@ -22,6 +22,15 @@ const resetGame = () => {
     $('#game-message').html('')
     store.turn = 1
   }
+}
+const getAllGames = () => {
+  for (let i = 0; i < store.gameBoard.length; i++) {
+    $('#' + i).text('')
+    $('#' + i).on('click', onBoxClick)
+    $('#game-message').html('')
+    store.turn = 1
+  }
+
   gameActions.createGame({})
   store.gameBoard = ['', '', '', '', '', '', '', '', '']
 }
@@ -35,8 +44,10 @@ const winningGame = function () {
       (store.gameBoard[3] === 'x' && store.gameBoard[4] === 'x' && store.gameBoard[5] === 'x') ||
       (store.gameBoard[0] === 'x' && store.gameBoard[4] === 'x' && store.gameBoard[8] === 'x') ||
       (store.gameBoard[2] === 'x' && store.gameBoard[4] === 'x' && store.gameBoard[6] === 'x')) {
-    // console.html(<h3>X Wins! Game Over - TRY AGAIN!</h3>)
     const winningMessage = 'x'
+    $('#game-message').html('The winner is player X. (press RESET to play again)')
+    $('#game-message').css('font-size', '50px')
+    $('#game-message').css('text-align', 'center')
     freezeBoard()
     return winningMessage
   } else if
@@ -50,6 +61,9 @@ const winningGame = function () {
           (store.gameBoard[2] === 'o' && store.gameBoard[4] === 'o' && store.gameBoard[6] === 'o')) {
     // $('#').html('O wins!')
     const winningMessage = 'o'
+    $('#game-message').html('The winner is player O. (press RESET to play again)')
+    $('#game-message').css('font-size', '50px')
+    $('#game-message').css('text-align', 'center')
     freezeBoard()
     return winningMessage
   } else {
@@ -128,6 +142,7 @@ const onBoxClick = function (event) {
 const addGameHandlers = function () {
   $('.box').on('click', onBoxClick)
   $('#reset').on('click', resetGame)
+  $('#games-played').on('click', getAllGames)
   // event.preventDefault()
   // console.log('addGameHandlers worked!')
 }
