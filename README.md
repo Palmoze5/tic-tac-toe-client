@@ -6,9 +6,15 @@
 This is a file which explains the goals, features and future
 considerations of the Tic-Tac-Toe game.
 
+## Technologies used:
+-Macbook Pro
+-Atom
+-Google
+-Web Browser
+
 
 ## Outline:
--A wireframe of what the game project will look like.
+-A wireframe of what the game project will look like (scroll to "Wire frames" to read more)
 -How the developer will represent the game board in JS.
 -How the developer plan to approaches this project.
 -4-8 user stories for the game project (for example, using the As a < type of user >, I want < some goal > so that < some reason >. format from the readings).
