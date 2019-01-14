@@ -21,6 +21,7 @@ const resetGame = () => {
     $('#' + i).on('click', onBoxClick)
     $('#game-message').html('')
     store.turn = 1
+    store.gameBoard = ['', '', '', '', '', '', '', '', '']
   }
 }
 // const getAllGames = () => {
