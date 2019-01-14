@@ -33,6 +33,7 @@ const onSignInSuccess = function (data) {
   $('.game-board').show()
   hideAuthMessage()
   store.user = data.user
+  console.log(store.user)
   $('#sign-out').show()
   $('#change-password').show()
   $('#sign-in').hide()
