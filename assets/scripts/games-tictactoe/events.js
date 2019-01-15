@@ -23,17 +23,16 @@ const resetGame = () => {
     store.turn = 1
   }
 }
-const getAllGames = () => {
-  for (let i = 0; i < store.gameBoard.length; i++) {
-    $('#' + i).text('')
-    $('#' + i).on('click', onBoxClick)
-    $('#game-message').html('')
-    store.turn = 1
-  }
+// const getAllGames = () => {
+//   for (let i = 0; i < store.gameBoard.length; i++) {
+//     $('#' + i).text('')
+//     $('#' + i).on('click', onBoxClick)
+//     $('#game-message').html('')
+//     store.turn = 1
+//   }
 
-  gameActions.createGame({})
-  store.gameBoard = ['', '', '', '', '', '', '', '', '']
-}
+gameActions.createGame({})
+store.gameBoard = ['', '', '', '', '', '', '', '', '']
 
 const winningGame = function () {
   if ((store.gameBoard[0] === 'x' && store.gameBoard[1] === 'x' && store.gameBoard[2] === 'x') ||
@@ -142,7 +141,7 @@ const onBoxClick = function (event) {
 const addGameHandlers = function () {
   $('.box').on('click', onBoxClick)
   $('#reset').on('click', resetGame)
-  $('#games-played').on('click', getAllGames)
+  // $('#games-played').on('click', getAllGames)
   // event.preventDefault()
   // console.log('addGameHandlers worked!')
 }
