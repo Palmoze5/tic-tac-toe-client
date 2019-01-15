@@ -12,6 +12,7 @@ store.gameBoard = ['', '', '', '', '', '', '', '', '']
 const freezeBoard = () => {
   for (let i = 0; i < store.gameBoard.length; i++) {
     $('#' + i).unbind('click')
+    store.turn = 1
   }
 }
 
@@ -73,7 +74,9 @@ const winningGame = function () {
 const gameDraw = function () {
   if ((store.gameBoard[0] !== '' && store.gameBoard[1] !== '' && store.gameBoard[2] !== '' && store.gameBoard[3] !== '' && store.gameBoard[4] !== '' && store.gameBoard[5] !== '' && store.gameBoard[6] !== '' && store.gameBoard[7] !== '' && store.gameBoard[8] !== '' && winningGame() === false)) {
     console.log('Its a DRAW! Game Over - TRY AGAIN!')
-    $('#game-message').html('Its a DRAW! Game Over - TRY AGAIN!')
+    $('#game-message').html('Its a DRAW! Press RESET and TRY AGAIN!')
+    $('#game-message').css('font-size', '50px')
+    $('#game-message').css('text-align', 'center')
     freezeBoard()
   }
 }

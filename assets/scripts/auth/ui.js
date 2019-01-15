@@ -21,7 +21,7 @@ const onSignUpSuccess = function (data) {
 const onSignUpFailure = function (error) {
   $('#auth-messages').show()
   $('#auth-messages').addClass('failure')
-  $('#auth-messages').text('Error on Sign Up')
+  $('#auth-messages').text('Error on Sign Up. Please, try again.')
   hideAuthMessage()
   // $('#sign-up').removeClass()
   console.log('Sign Up Failed. Error is : ', error)
@@ -44,11 +44,12 @@ const onSignInSuccess = function (data) {
 
 const onSignInFailure = function (error) {
   $('#auth-messages').show()
-  $('#auth-messages').addClass('failure')
-  $('#auth-messages').text('Error on Sign In')
-  hideAuthMessage()
-  $('#sign-in').text('Error on Sign In')
-  $('#sign-in').removeClass()
+  // $('#auth-messages').addClass('failure')
+  // $('#auth-messages').text('Error on Sign In')
+  // hideAuthMessage()
+  $('#sign-in').text('Error on Sign In. Please try again.')
+  $('#sign-in').show()
+  // $('#sign-in').removeClass()
   $('#sign-in').addClass('failure')
   console.log('Sign In Failed. Error is : ', error)
 }
