@@ -1,5 +1,6 @@
 const store = require('../store.js')
 const createGame = require('../games-tictactoe/api')
+const gameEvents = require('../auth/api.js')
 
 const hideAuthMessage = () => {
   setTimeout(() => {
@@ -27,6 +28,7 @@ const onSignUpFailure = function (error) {
   console.log('Sign Up Failed. Error is : ', error)
 }
 const onSignInSuccess = function (data) {
+  $('#reset').trigger('click')
   $('#auth-messages').text('Sign In successful. Play the game!')
   $('#auth-messages').show()
   $('#auth-messages').addClass('success')
@@ -68,7 +70,7 @@ const onSignInFailure = function (error) {
 }
 const onSignOutSuccess = function (data) {
   $('#auth-messages').css('display', 'inline')
-  // $('#auth-messages').addClass('success')
+  $('#auth-messages').addClass('success')
   $('#auth-messages').text('Sign Out Successful')
   $('#auth-messages').hide()
   hideAuthMessage()

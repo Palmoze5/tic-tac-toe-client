@@ -1,22 +1,23 @@
-'use strict'
+// 'use strict'
 
 const config = require('../config')
 const store = require('../store')
+const ui = require('./ui.js')
 
-const createGame = (data) => {
-  createGameAPI(data)
-    .then(data => (store.game = data.game))
-    .catch(data => console.log('error'))
+const createGame = () => {
+  createGameAPI()
+    .then(ui.createGameSuccess)
+    .catch(ui.createGameFailure)
 }
 
-const createGameAPI = function (data) {
+const createGameAPI = function () {
   return $.ajax({
     url: config.apiUrl + '/games',
     method: 'POST',
     headers: {
       'Authorization': 'Token token=' + store.user.token
     },
-    data: data
+    data: '{}'
   })
 }
 
@@ -43,14 +44,13 @@ const patchGame = function (index, letter, over) {
 
 const showAllGames = function () {
   return $.ajax({
-    url: config.apiUrl + '/games/',
+    url: config.apiUrl + '/games',
     method: 'GET',
     headers: {
       Authorization: 'Token token=' + store.user.token
     }
   })
 }
-
 module.exports = {
   createGame,
   patchGame,

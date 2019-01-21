@@ -5,19 +5,12 @@ const hideAuthMessage = () => {
     $('#auth-messages').hide()
   }, 3000)
 }
-const showGamePlayMessage = () => {
-  setTimeout(() => {
-    $('#games-played-message').show()
-  }, 100)
-}
 
 const createGameSuccess = function (data) {
   $('.game-board').show()
   $('#games-played').hide()
-  $('#scores').show()
-  $('#game-id').text('Game ID: ' + data.game.id)
   $('#game-message').show()
-  $('#game-message').text('New Game Started!')
+  $('#game-message').text('Who will win? Play to find out!')
   $('#game-message').css('background-color', '#8fff90')
   console.log('createGameSuccess!')
   store.game = data.game
@@ -29,7 +22,7 @@ const createGameFailure = function () {
 }
 // Get Games
 const getGamesSuccess = function (data) {
-  $('#games-played-message').text('Total Games for User ' + store.user.id + ': ' + data.games.length).css('font-weight', 'bold')
+  $('#game-message').text('Total Games for User ' + store.user.id + ': ' + data.games.length).css('font-weight', 'bold')
   $('#games-played').show()
   store.game = data.game
 }
@@ -55,7 +48,6 @@ const onShowAllGamesSuccess = function (response) {
   $('#games-played-message').text('Games Played: ' + response.games.length)
   $('#games-played-message').css('background-color', '#8fff90')
   $('#games-played-message').css('text-align', 'center')
-  showGamePlayMessage()
   store.game = response.game
   // $('#auth-messages').show()
   // $('#auth-messages').addClass('success')
