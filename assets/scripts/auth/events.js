@@ -7,7 +7,6 @@ store.gameBoard = ['', '', '', '', '', '', '', '', '']
 
 const onSignUp = function (event) {
   event.preventDefault()
-  console.log('onSignUp worked!')
 
   const data = getFormFields(event.target)
   api.signUp(data)
@@ -16,7 +15,6 @@ const onSignUp = function (event) {
 }
 const onSignIn = function (event) {
   event.preventDefault()
-  console.log('onSignIn worked!')
   $('.game-board').removeClass('display')
 
   const data = getFormFields(event.target)
@@ -26,7 +24,6 @@ const onSignIn = function (event) {
 }
 const onChangePass = function (event) {
   event.preventDefault()
-  console.log('onChangePass ran!')
 
   const data = getFormFields(event.target)
   api.changePass(data)
@@ -36,7 +33,6 @@ const onChangePass = function (event) {
 
 const onSignOut = function (event) {
   event.preventDefault()
-  console.log('onSignOut ran!')
 
   const data = getFormFields(event.target)
   api.signOut(data)

@@ -10,9 +10,10 @@ const createGameSuccess = function (data) {
   $('.game-board').show()
   $('#games-played').hide()
   $('#game-message').show()
-  $('#game-message').text('Who will win? Play to find out!')
+  $('#game-message').text('Enjoy the game!')
   $('#game-message').css('background-color', '#8fff90')
-  console.log('createGameSuccess!')
+  $('#game-message').css('font-size', '20px')
+  $('#game-message').css('text-align', 'center')
   store.game = data.game
 }
 
@@ -49,23 +50,13 @@ const onShowAllGamesSuccess = function (response) {
   $('#games-played-message').css('background-color', '#8fff90')
   $('#games-played-message').css('text-align', 'center')
   store.game = response.game
-  // $('#auth-messages').show()
-  // $('#auth-messages').addClass('success')
-  // $('#auth-messages').text('Sign Up successful')
-  // hideAuthMessage()
-  // $('#sign-up').hide()
-  // $('#sign-in').hide()
-  // $('#sign-up').addClass('success')
-  console.log('onShowAllGamesSuccess. Success is : ', response)
 }
 
-const onShowAllGamesFailure = function (error) {
+const onShowAllGamesFailure = function () {
   $('#auth-messages').show()
   $('#auth-messages').addClass('failure')
   $('#auth-messages').text('Error on Sign Up. Please, try again.')
   hideAuthMessage()
-  // $('#sign-up').removeClass()
-  console.log('onShowAllGamesFailure. Error is : ', error)
 }
 
 module.exports = {
