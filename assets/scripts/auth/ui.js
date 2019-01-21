@@ -53,7 +53,6 @@ const onSignInFailure = function () {
   $('#games-played').hide()
 }
 const onSignOutSuccess = function (data) {
-  $('#games-info-message').hide()
   $('#auth-messages').css('display', 'inline')
   $('#auth-messages').addClass('success')
   $('#auth-messages').text('Sign Out Successful')
