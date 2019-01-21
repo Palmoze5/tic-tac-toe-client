@@ -1,12 +1,25 @@
 const store = require('../store.js')
 
+const hideAuthMessage = () => {
+  setTimeout(() => {
+    $('#auth-messages').hide()
+  }, 3000)
+}
+const showGamePlayMessage = () => {
+  setTimeout(() => {
+    $('#games-played-message').show()
+  }, 100)
+}
+
 const createGameSuccess = function (data) {
   $('.game-board').show()
+  $('#games-played').hide()
   $('#scores').show()
   $('#game-id').text('Game ID: ' + data.game.id)
   $('#game-message').show()
   $('#game-message').text('New Game Started!')
   $('#game-message').css('background-color', '#8fff90')
+  console.log('createGameSuccess!')
   store.game = data.game
 }
 
@@ -16,7 +29,8 @@ const createGameFailure = function () {
 }
 // Get Games
 const getGamesSuccess = function (data) {
-  $('#games-list').text('Total Games for User ' + store.user.id + ': ' + data.games.length).css('font-weight', 'bold')
+  $('#games-played-message').text('Total Games for User ' + store.user.id + ': ' + data.games.length).css('font-weight', 'bold')
+  $('#games-played').show()
   store.game = data.game
 }
 
@@ -35,11 +49,40 @@ const updateGameFailure = function () {
   $('#message').text('Game Update Failed - Try Again')
   $('#message').css('background-color', '#ff91A3')
 }
+
+const onShowAllGamesSuccess = function (response) {
+  $('#games-played-message').show()
+  $('#games-played-message').text('Games Played: ' + response.games.length)
+  $('#games-played-message').css('background-color', '#8fff90')
+  $('#games-played-message').css('text-align', 'center')
+  showGamePlayMessage()
+  store.game = response.game
+  // $('#auth-messages').show()
+  // $('#auth-messages').addClass('success')
+  // $('#auth-messages').text('Sign Up successful')
+  // hideAuthMessage()
+  // $('#sign-up').hide()
+  // $('#sign-in').hide()
+  // $('#sign-up').addClass('success')
+  console.log('onShowAllGamesSuccess. Success is : ', response)
+}
+
+const onShowAllGamesFailure = function (error) {
+  $('#auth-messages').show()
+  $('#auth-messages').addClass('failure')
+  $('#auth-messages').text('Error on Sign Up. Please, try again.')
+  hideAuthMessage()
+  // $('#sign-up').removeClass()
+  console.log('onShowAllGamesFailure. Error is : ', error)
+}
+
 module.exports = {
   createGameSuccess,
   createGameFailure,
   getGamesSuccess,
   getGamesFailure,
   updateGameSuccess,
-  updateGameFailure
+  updateGameFailure,
+  onShowAllGamesSuccess,
+  onShowAllGamesFailure
 }

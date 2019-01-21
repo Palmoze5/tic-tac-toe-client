@@ -4,17 +4,16 @@ const createGame = require('../games-tictactoe/api')
 const hideAuthMessage = () => {
   setTimeout(() => {
     $('#auth-messages').hide()
-  }, 5000)
+  }, 3000)
 }
 
 const onSignUpSuccess = function (data) {
   $('#auth-messages').show()
   $('#auth-messages').addClass('success')
+  $('#auth-messages').removeClass('failure')
   $('#auth-messages').text('Sign Up successful')
   hideAuthMessage()
   $('#sign-up').hide()
-  // $('#sign-in').hide()
-  $('#sign-up').addClass('success')
   console.log('Sign Up OK. Data is : ', data)
 }
 
@@ -22,46 +21,69 @@ const onSignUpFailure = function (error) {
   $('#auth-messages').show()
   $('#auth-messages').addClass('failure')
   $('#auth-messages').text('Error on Sign Up. Please, try again.')
+  $('#sign-up')[0].reset()
   hideAuthMessage()
   // $('#sign-up').removeClass()
   console.log('Sign Up Failed. Error is : ', error)
 }
 const onSignInSuccess = function (data) {
+  $('#auth-messages').text('Sign In successful. Play the game!')
   $('#auth-messages').show()
   $('#auth-messages').addClass('success')
-  $('#auth-messages').text('Sign In successful')
+  $('#auth-messages').removeClass('failure')
   $('.game-board').show()
+  $('#games-played').hide()
   hideAuthMessage()
-  store.user = data.user
-  console.log(store.user)
+  $('#sign-out').removeClass('hidden')
   $('#sign-out').show()
   $('#change-password').show()
   $('#sign-in').hide()
+  // $('#sign-in').resetGame()
   $('#sign-up').hide()
-  console.log('Sign In OK. Data is : ', data)
+  store.user = data.user
   createGame.createGame({})
 }
+// signInSuccess = function signInSuccess(response) {
+//   //  console.log('Response is', response)
+//   $('#auth-message').text('Enjoy your game!');
+//   $('#sign-in input').val('');
+//   $('#change-password').removeClass('hidden');
+//   $('#sign-out').removeClass('hidden');
+//   $('#start-game').removeClass('hidden');
+//   $('#sign-in').hide();
+//   $('#sign-up').hide();
+//   $('.story').hide();
+//   store.user = response.user;
+// };
 
 const onSignInFailure = function (error) {
-  $('#auth-messages').show()
-  // $('#auth-messages').addClass('failure')
-  // $('#auth-messages').text('Error on Sign In')
-  // hideAuthMessage()
-  $('#sign-in').text('Error on Sign In. Please try again.')
+  $('#auth-messages').text('Error on Sign In. Please try again.')
   $('#sign-in').show()
+  $('#sign-in')[0].reset()
   // $('#sign-in').removeClass()
-  $('#sign-in').addClass('failure')
+  $('#auth-messages').addClass('failure')
+  $('#auth-messages').css('display', 'inline')
+  $('#games-played').hide()
   console.log('Sign In Failed. Error is : ', error)
 }
 const onSignOutSuccess = function (data) {
-  $('#auth-messages').show()
-  $('#auth-messages').addClass('success')
+  $('#auth-messages').css('display', 'inline')
+  // $('#auth-messages').addClass('success')
   $('#auth-messages').text('Sign Out Successful')
+  $('#auth-messages').hide()
   hideAuthMessage()
+  $('#sign-up')[0].reset()
+  $('#sign-up').show()
+  $('#sign-up').removeClass('success')
+  $('#sign-in')[0].reset()
+  $('#sign-in').show()
   $('#sign-out').hide()
   $('#change-password').hide()
-  $('#sign-in').show()
-  $('#sign-up').show()
+  $('.game-board').hide()
+  $('#game-message').removeClass('success')
+  $('#game-message').hide()
+  $('#games-played-message').hide()
+  $('#games-played-message').removeClass('success')
   console.log('Sign Out OK. Data is : ', data)
 }
 
@@ -77,9 +99,11 @@ const onSignOutFailure = function (error) {
 const onChangePassSuccess = function (data) {
   $('#auth-messages').addClass('success')
   $('#auth-messages').text('Change Password Success')
-  hideAuthMessage()
+  $('#auth-messages').css('display', 'inline')
+  $('#change-password')[0].reset()
+  // hideAuthMessage()
   $('#sign-up').hide()
-  $('#change-password').addClass('success')
+  // $('#change-password').addClass('success')
   console.log('Change Password OK. Data is : ', data)
 }
 
@@ -88,8 +112,30 @@ const onChangePassFailure = function (error) {
   $('#auth-messages').addClass('failure')
   $('#auth-messages').text('Change Password Failure')
   hideAuthMessage()
+  $('#change-password')[0].reset()
   $('#change-password').addClass('failure')
   console.log('Change Password Failed. Error is : ', error)
+}
+const onShowAllGamesSuccess = function (responseAPI) {
+  $('#games-played').show()
+  $('#games-played-message').removeClass('hidden')
+  $('#games-played-message').addClass('success')
+  $('#games-played-message').text('Here are the total games played on your account: ')
+  // $('#auth-messages').addClass('success')
+  // $('#auth-messages').text('Sign Up successful')
+  // hideAuthMessage()
+  // $('#sign-up').hide()
+  // $('#sign-in').hide()
+  // $('#sign-up').addClass('success')
+  console.log(responseAPI)
+}
+
+const onShowAllGamesFailure = function (error) {
+  $('#auth-messages').show()
+  $('#auth-messages').addClass('failure')
+  $('#auth-messages').text('Error on Sign Up. Please, try again.')
+  hideAuthMessage()
+  console.log('Sign Up Failed. Error is : ', error)
 }
 module.exports = {
   onSignUpSuccess,
@@ -99,5 +145,7 @@ module.exports = {
   onSignOutSuccess,
   onSignOutFailure,
   onChangePassSuccess,
-  onChangePassFailure
+  onChangePassFailure,
+  onShowAllGamesSuccess,
+  onShowAllGamesFailure
 }
