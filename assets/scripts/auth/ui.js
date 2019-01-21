@@ -1,6 +1,6 @@
 const store = require('../store.js')
 const createGame = require('../games-tictactoe/api')
-// const gameEvents = require('../auth/api.js')
+const gameEvents = require('../auth/api.js')
 
 const hideAuthMessage = () => {
   setTimeout(() => {
@@ -28,6 +28,7 @@ const onSignUpFailure = function (error) {
   console.log('Sign Up Failed. Error is : ', error)
 }
 const onSignInSuccess = function (data) {
+  store.user = data.user
   $('#reset').trigger('click')
   $('#auth-messages').text('Sign In successful. Play the game!')
   $('#auth-messages').show()
@@ -42,21 +43,8 @@ const onSignInSuccess = function (data) {
   $('#sign-in').hide()
   // $('#sign-in').resetGame()
   $('#sign-up').hide()
-  store.user = data.user
-  createGame.createGame({})
+  createGame.createGame(data)
 }
-// signInSuccess = function signInSuccess(response) {
-//   //  console.log('Response is', response)
-//   $('#auth-message').text('Enjoy your game!');
-//   $('#sign-in input').val('');
-//   $('#change-password').removeClass('hidden');
-//   $('#sign-out').removeClass('hidden');
-//   $('#start-game').removeClass('hidden');
-//   $('#sign-in').hide();
-//   $('#sign-up').hide();
-//   $('.story').hide();
-//   store.user = response.user;
-// };
 
 const onSignInFailure = function (error) {
   $('#auth-messages').text('Error on Sign In. Please try again.')

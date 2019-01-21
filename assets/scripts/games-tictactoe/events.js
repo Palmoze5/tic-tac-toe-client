@@ -145,7 +145,6 @@ const addGameHandlers = function () {
   $('.box').on('click', onBoxClick)
   $('#reset').on('click', resetGame)
   $('#games-played').on('click', onShowAllGames)
-  $('#sign-out').on('click', resetGame)
 }
 
 module.exports = {
