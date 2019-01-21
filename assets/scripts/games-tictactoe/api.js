@@ -10,14 +10,14 @@ const createGame = () => {
     .catch(ui.createGameFailure)
 }
 
-const createGameAPI = function () {
+const createGameAPI = function (data) {
   return $.ajax({
     url: config.apiUrl + '/games',
     method: 'POST',
     headers: {
       'Authorization': 'Token token=' + store.user.token
     },
-    data: '{}'
+    data: data
   })
 }
 
@@ -53,6 +53,7 @@ const showAllGames = function () {
 }
 module.exports = {
   createGame,
+  createGameAPI,
   patchGame,
   showAllGames
 }

@@ -29,9 +29,8 @@ const signOut = function () {
   })
 }
 const changePass = function (data) {
-  console.log('data: ', data)
   return $.ajax({
-    url: config.apiUrl + '/change-password/' + store.user.token,
+    url: config.apiUrl + '/change-password/',
     method: 'PATCH',
     headers: {
       Authorization: 'Token token=' + store.user.token

@@ -45,7 +45,7 @@ const resetGame = () => {
   }
 }
 
-gameActions.createGame({})
+// gameActions.createGame({})
 store.gameBoard = ['', '', '', '', '', '', '', '', '']
 
 const winningGame = function () {
