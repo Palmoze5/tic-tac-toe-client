@@ -1,6 +1,6 @@
 const store = require('../store.js')
 const createGame = require('../games-tictactoe/api')
-const gameEvents = require('../auth/api.js')
+// const gameEvents = require('../auth/api.js')
 
 const hideAuthMessage = () => {
   setTimeout(() => {
