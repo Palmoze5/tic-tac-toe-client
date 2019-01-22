@@ -33,7 +33,7 @@ const changePass = function (data) {
     headers: {
       Authorization: 'Token token=' + store.user.token
     },
-    data
+    data: data
   })
 }
 module.exports = {
