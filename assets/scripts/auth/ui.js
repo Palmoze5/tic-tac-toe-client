@@ -14,7 +14,8 @@ const onSignUpSuccess = function (data) {
   $('#auth-messages').removeClass('failure')
   $('#auth-messages').text('Sign Up successful')
   hideAuthMessage()
-  $('#sign-up').hide()
+  $('#sign-up')[0].reset()
+  $('#sign-up').show()
 }
 
 const onSignUpFailure = function () {
@@ -34,7 +35,7 @@ const onSignInSuccess = function (data) {
   $('#auth-messages').addClass('success')
   $('#auth-messages').removeClass('failure')
   $('.game-board').show()
-  $('#games-played').hide()
+  $('#games-played').show()
   hideAuthMessage()
   $('#sign-out').removeClass('hidden')
   $('#sign-out').show()

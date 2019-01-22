@@ -8,7 +8,7 @@ const hideAuthMessage = () => {
 
 const createGameSuccess = function (data) {
   $('.game-board').show()
-  $('#games-played').hide()
+  $('#games-played').show()
   $('#game-message').show()
   $('#game-message').text('Enjoy the game!')
   $('#game-message').css('background-color', '#8fff90')

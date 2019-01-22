@@ -23,7 +23,7 @@ const resetGame = () => {
     $('#' + i).text('')
     $('#' + i).on('click', onBoxClick)
     $('#game-message').html('')
-    $('#games-played').hide()
+    $('#games-played').show()
     $('#games-played-message').hide()
     $('#sign-in')[0].reset()
     store.turn = 1
