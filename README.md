@@ -11,6 +11,7 @@ considerations of the Tic-Tac-Toe game.
 -Atom
 -Google
 -Web Browser
+-Git Hub repo - local and remote
 
 
 ## Outline:
